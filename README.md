@@ -340,7 +340,8 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 - 参照官方给出的demo，以及修订blog;
 - 使用Playground，这个真好用，下边附图;
 - 参考资料我也总结了下，[请戳此处](https://github.com/mythkiven/SourceOfSwift)
-- 做个广告：针对Swift3.0.1，我写了小教程放在个人博客，只是近期修改了设置访问有点问题..
+
+>如有问题还请移步☞[我的博客(http://3code.info/2017/01/18/SDiffuseMenu/)
 
 
 
