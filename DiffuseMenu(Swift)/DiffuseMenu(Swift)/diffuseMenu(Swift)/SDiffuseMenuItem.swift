@@ -8,7 +8,7 @@
 //  Copyright © 2017年 mythkiven. All rights reserved.
 
 //  本动画是Swift版本的AwesomeMenu，OC版请参考https://github.com/levey/AwesomeMenu；
-//  代码相关的注解参见wiki
+//  代码相关的注解参见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
 
 
 import UIKit
@@ -37,15 +37,15 @@ class SDiffuseMenuItem : UIImageView {
     }
     
     init(image:UIImage,
-         highlightedImage himg: UIImage,
-         contentImage cimg:UIImage,
-         highlightedContentImage hcimg:UIImage!) {
+         highlightedImage hImg: UIImage,
+         contentImage cImg:UIImage,
+         highlightedContentImage hCImg:UIImage!) {
         super.init(image: image)
         
-        contentImageView                    = UIImageView(image:cimg)
-        contentImageView.highlightedImage   = hcimg
+        contentImageView                    = UIImageView(image:cImg)
+        contentImageView.highlightedImage   = hCImg
         self.image                          = image
-        self.highlightedImage               = himg
+        self.highlightedImage               = hImg
         self.isUserInteractionEnabled       = true
         
         self.addSubview(contentImageView)
@@ -53,9 +53,9 @@ class SDiffuseMenuItem : UIImageView {
     }
     
     override var isHighlighted: Bool {
-        set(val) {
-            super.isHighlighted             = val
-            contentImageView.isHighlighted  = val
+        set(vaN) {
+            super.isHighlighted             = vaN
+            contentImageView.isHighlighted  = vaN
         }
         get{
             return super.isHighlighted
@@ -77,7 +77,8 @@ class SDiffuseMenuItem : UIImageView {
                                         height: height)
     }
     
-    // 这里写法和OC版原理一样
+    // 这里也可以使用 hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? 实现
+    
     class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
         let x       = (rect.size.width - rect.size.width * n) / 2
         let y       = (rect.size.height - rect.size.height * n) / 2

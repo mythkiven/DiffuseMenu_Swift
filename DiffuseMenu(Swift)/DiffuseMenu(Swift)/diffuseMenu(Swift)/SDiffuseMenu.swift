@@ -9,7 +9,7 @@
 //
 //  本动画是Swift版本的AwesomeMenu，OC版请参考https://github.com/levey/AwesomeMenu；
 //  为方便注释，下边将add菜单按钮简称：菜单按钮，其余菜单选项按钮简称：选项按钮
-//  代码相关的注解参见wiki；
+//  代码相关的注解参见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md；
 //  在使用中如果出现BUG，或者优化的地方，还请提Issues，感谢！
 
 
@@ -53,7 +53,7 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     var farRadius:              CGFloat! // 动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
     var startPoint:             CGPoint! // 动画起始点
     var timeOffset:             TimeInterval = 0 // 单个动画开始执行时间间隔
-    var rotateAngle:            CGFloat! // 单个动画自旋角度
+    var rotateAngle:            CGFloat! // 整体偏移角度，注意与menuWholeAngle差异，一般默认0不偏移
     var menuWholeAngle:         CGFloat! // 所有选项的整体角度,360°:M_PI * 2, 右上角90°:M_PI_2, ...
     var expandRotation:         CGFloat! // 展开时选项自旋角度
     var closeRotation:          CGFloat! // 关闭时选项自旋角度
@@ -208,8 +208,7 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if (_isAnimating) {
             return false
-        }
-        if (true == expanding) {
+        }else if (true == expanding) {
             return true
         } else {
             return _startButton.frame.contains(point)
@@ -417,50 +416,52 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     }
     
     private func _rotateCGPointAroundCenter( _ point: CGPoint, center: CGPoint, angle: CGFloat) -> CGPoint {
+        
         let translation     = CGAffineTransform(translationX: center.x, y: center.y)
         let rotation        = CGAffineTransform(rotationAngle: angle)
         let transformGroup  = translation.inverted().concatenating(rotation).concatenating(translation)
         
         return point.applying(transformGroup)
-        
     }
     
     private func _setMenu() {
+        
+        print("menuWholeAngle\(menuWholeAngle)")
+        print("rotateAngle\(rotateAngle)")
         for index in 0 ..< menusItems.count {
             
-            let tcount  = CGFloat(menusItems.count)
-            let item    = menusItems.object(at: index) as! SDiffuseMenuItem
-            let ti      = CGFloat(index)
-            
-            item.tag = 1000 + index
+            let icount      = CGFloat(menusItems.count)
+            let item        = menusItems.object(at: index) as! SDiffuseMenuItem
+            let ti          = CGFloat(index)
+            item.tag        = 1000 + index
             item.startPoint = self.startPoint
             
             if (menuWholeAngle >= CGFloat(M_PI * 2)) {
-                menuWholeAngle = menuWholeAngle - menuWholeAngle / (tcount)
+                menuWholeAngle = menuWholeAngle - menuWholeAngle / (icount)
             }
-            let p1 = ti * menuWholeAngle
-            let p2 = tcount - CGFloat(1.0)
-            let sin = sinf(Float(p1 / p2))
+            print("menuWholeAngle\(menuWholeAngle)")
             
-            var x = startPoint.x + CGFloat(endRadius) * CGFloat(sin)
-            var y = (CGFloat(startPoint.y) - endRadius * CGFloat(cosf(Float(ti * menuWholeAngle / CGFloat(tcount - CGFloat(1))))))
+            let sinValue  = CGFloat(sinf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
+            let cosValue  = CGFloat(cosf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
             
-            let endPoint =  CGPoint(x: x,y: y)
+            var x         = startPoint.x + CGFloat(endRadius) * sinValue
+            var y         = (CGFloat(startPoint.y) - endRadius * cosValue)
+            let endPoint  =  CGPoint(x: x,y: y)
             item.endPoint = _rotateCGPointAroundCenter(endPoint, center: startPoint, angle: rotateAngle)
-            x = startPoint.x + nearRadius * CGFloat(sinf(Float(ti * menuWholeAngle / (tcount - CGFloat(1)))))
-            y = startPoint.y - nearRadius * CGFloat(cosf(Float(ti * menuWholeAngle / (tcount - CGFloat(1)))))
-            let nearPoint =  CGPoint(x: x, y: y)
+            
+            x = startPoint.x + nearRadius * CGFloat(sinValue)
+            y = startPoint.y - nearRadius * CGFloat(cosValue)
+            let nearPoint  =  CGPoint(x: x, y: y)
             item.nearPoint = _rotateCGPointAroundCenter(nearPoint, center: startPoint, angle: rotateAngle)
             
-            let farPoint =  CGPoint(x: startPoint.x + farRadius * CGFloat(sinf(Float(ti * menuWholeAngle / (tcount - CGFloat(1))))), y: startPoint.y - farRadius * CGFloat(cosf(Float(ti * menuWholeAngle / (tcount - CGFloat(1))))))
-            item.farPoint = _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle)
-            item.center = item.startPoint
-            item.delegate = self
+            let farPoint   =  CGPoint(x: startPoint.x + farRadius * sinValue, y: startPoint.y - farRadius * cosValue)
+            item.farPoint  = _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle)
+            item.center    = item.startPoint
+            item.delegate  = self
             self.insertSubview(item, belowSubview:_startButton)
             
         }
     }
-
     
 }
 

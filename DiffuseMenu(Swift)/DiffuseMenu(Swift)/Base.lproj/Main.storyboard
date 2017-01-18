@@ -155,7 +155,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-15" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-TA-fdt">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1.3999999999999999" minValue="-15" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-TA-fdt">
                                         <rect key="frame" x="93" y="0.0" width="214" height="31"/>
                                         <connections>
                                             <action selector="menuWholeAngleDidChangeValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="iYM-Ay-Cdh"/>
@@ -218,7 +218,7 @@
                                     </switch>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-78-amA">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-78-amA">
                                 <rect key="frame" x="5" y="606" width="365" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜单是否单一展示" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Q-84-2eJ">
@@ -247,7 +247,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="-15" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="F2A-Lt-gs4">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="-1" minValue="-15" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="F2A-Lt-gs4">
                                         <rect key="frame" x="133" y="0.0" width="165" height="31"/>
                                         <connections>
                                             <action selector="rotateAddButtonAngleDidChangeValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="G9z-Yb-4zX"/>
@@ -274,6 +274,12 @@
                                     <action selector="resetAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fRW-aB-OAM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://github.com/mythkiven/DiffuseMenu_Swift" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQf-WS-x2L">
+                                <rect key="frame" x="5" y="644" width="365" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.02697057135" blue="0.01076903264" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -303,13 +309,16 @@
                             <constraint firstAttribute="trailing" secondItem="EjM-78-amA" secondAttribute="trailing" constant="5" id="elM-Me-zXz"/>
                             <constraint firstItem="pyh-59-m12" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eqY-if-OUz"/>
                             <constraint firstItem="fA0-4M-qgI" firstAttribute="top" secondItem="HDu-uv-gTK" secondAttribute="bottom" id="fB3-Oc-NxN"/>
+                            <constraint firstAttribute="trailing" secondItem="TQf-WS-x2L" secondAttribute="trailing" constant="5" id="gBf-37-hId"/>
                             <constraint firstItem="6Qm-m2-wjd" firstAttribute="top" secondItem="eGH-Yv-q3L" secondAttribute="bottom" constant="2" id="hEE-Oe-TgG"/>
                             <constraint firstAttribute="trailing" secondItem="fA0-4M-qgI" secondAttribute="trailing" constant="5" id="iJG-zt-dKR"/>
                             <constraint firstItem="AyN-Wa-Eul" firstAttribute="top" secondItem="FrZ-y0-MAQ" secondAttribute="bottom" id="jJC-gy-tbX"/>
                             <constraint firstItem="eWX-lw-ZMK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kcY-Jv-HBn"/>
+                            <constraint firstItem="TQf-WS-x2L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="lzu-cg-i77"/>
                             <constraint firstItem="eGH-Yv-q3L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qYH-Pd-XuG"/>
                             <constraint firstAttribute="trailing" secondItem="6Qm-m2-wjd" secondAttribute="trailing" constant="154" id="wmt-bQ-PWX"/>
                             <constraint firstItem="FrZ-y0-MAQ" firstAttribute="top" secondItem="eGH-Yv-q3L" secondAttribute="bottom" constant="30" id="ySp-FL-kuH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TQf-WS-x2L" secondAttribute="bottom" constant="5" id="zd9-ey-Pp1"/>
                         </constraints>
                     </view>
                     <connections>
@@ -319,7 +328,6 @@
                         <outlet property="endRadiusValue" destination="J58-kH-x4F" id="aDi-sc-VuR"/>
                         <outlet property="farRadius" destination="3lq-cE-uhO" id="pvV-Mr-Fuz"/>
                         <outlet property="farRadiusValue" destination="jZ2-dz-IQn" id="Xj1-uV-9RT"/>
-                        <outlet property="menuType" destination="x4K-3y-VtW" id="1bL-G9-g2M"/>
                         <outlet property="menuView" destination="eGH-Yv-q3L" id="DYE-B3-8Oz"/>
                         <outlet property="menuWholeAngle" destination="jjR-TA-fdt" id="vtO-Y7-XRI"/>
                         <outlet property="menuWholeAngleValue" destination="aMA-MI-Y7Z" id="t12-Sd-XjP"/>
