@@ -30,7 +30,7 @@ guard let starImage                     =  UIImage(named:"star.png")            
 guard let starItemNormalImage           =  UIImage(named:"addbutton-normal.png")        else { fatalError("图片加载失败") }
 guard let starItemLightedImage          =  UIImage(named:"addbutton-highlighted.png")   else { fatalError("图片加载失败") }
 guard let starItemContentImage          =  UIImage(named:"plus-normal.png")             else { fatalError("图片加载失败") }
-guard let starItemContentLightedImage   =  UIImage(named:"plus-highlighted.png")  else { fatalError("图片加载失败") }
+guard let starItemContentLightedImage   =  UIImage(named:"plus-highlighted.png")        else { fatalError("图片加载失败") }
 
 var menus = [SDiffuseMenuItem]()
 for _ in 0 ..< 9 {
@@ -167,7 +167,7 @@ rotateAnimation.keyTimes = [NSNumber(value: 0.0 as Float),NSNumber(value: 0.4 as
 移动的控制源于path是怎样设定的，代码中我写了两种方法，其中一种是注释掉了。
 
 ``` swift
-let positionAnimation =  CAKeyframeAnimation(keyPath: "position")
+let positionAnimation      =  CAKeyframeAnimation(keyPath: "position")
 positionAnimation.duration = animationDuration
 ```
 1)\使用贝塞尔曲线作为path,从代码中可以明显的看出移动的路径：endPoint -> farPoint -> startPoint
@@ -330,7 +330,8 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 ![](https://ooo.0o0.ooo/2017/01/18/587f06c314ded.png)
 
 >这一版的SDiffuseMenu和AwesomeMenu基本是一样的，接下来的一版我会增加多方向的直线弹出排列动画，喜欢的朋友还请给个star哦，我会努力优化的~
->还有上边的问题的答案，我猜测是Core Animation Layer。
+>
+>还有上边问题的答案，我猜测是Core Animation Layer。
 
 
 最后分享下Swift学习心得：
