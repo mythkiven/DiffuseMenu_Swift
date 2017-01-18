@@ -77,8 +77,6 @@ class SDiffuseMenuItem : UIImageView {
                                         height: height)
     }
     
-    // 这里也可以使用 hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? 实现
-    
     class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
         let x       = (rect.size.width - rect.size.width * n) / 2
         let y       = (rect.size.height - rect.size.height * n) / 2

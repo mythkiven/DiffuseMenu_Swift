@@ -14,7 +14,7 @@
 
 ## 一、使用方法如下：
 
-添加协议(监听动画状态) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)
+添加协议(动画状态回调) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)
 
 ####1、添加协议
 ``` swift
@@ -24,45 +24,44 @@ class ViewController: UIViewController, SDiffuseMenuDelegate {
 ```
 ####2、设置菜单的选项按钮数据
 ``` swift
-guard let storyMenuItemImage                =  UIImage(named:"menuitem-normal.png")         else { fatalError("图片加载失败") }
-        guard let storyMenuItemImagePressed =  UIImage(named:"menuitem-highlighted.png")    else { fatalError("图片加载失败") }
-        guard let starImage                 =  UIImage(named:"star.png")                    else { fatalError("图片加载失败") }
-        guard let starItemNormalImage       =  UIImage(named:"addbutton-normal.png")        else { fatalError("图片加载失败") }
-        guard let starItemLightedImage      =  UIImage(named:"addbutton-highlighted.png")   else { fatalError("图片加载失败") }
-        guard let starItemContentImage      =  UIImage(named:"plus-normal.png")             else { fatalError("图片加载失败") }
-        guard let starItemContentLightedImage =  UIImage(named:"plus-highlighted.png")  else { fatalError("图片加载失败") }
-        
-        var menus = [SDiffuseMenuItem]()
-        for _ in 0 ..< 9 {
-            let starMenuItem =  SDiffuseMenuItem(image: storyMenuItemImage,
-                                                 highlightedImage: storyMenuItemImagePressed, contentImage: starImage,
-                                                 highlightedContentImage: nil)
-            menus.append(starMenuItem)
-        }
+guard let storyMenuItemImage            =  UIImage(named:"menuitem-normal.png")         else { fatalError("图片加载失败") }
+guard let storyMenuItemImagePressed     =  UIImage(named:"menuitem-highlighted.png")    else { fatalError("图片加载失败") }
+guard let starImage                     =  UIImage(named:"star.png")                    else { fatalError("图片加载失败") }
+guard let starItemNormalImage           =  UIImage(named:"addbutton-normal.png")        else { fatalError("图片加载失败") }
+guard let starItemLightedImage          =  UIImage(named:"addbutton-highlighted.png")   else { fatalError("图片加载失败") }
+guard let starItemContentImage          =  UIImage(named:"plus-normal.png")             else { fatalError("图片加载失败") }
+guard let starItemContentLightedImage   =  UIImage(named:"plus-highlighted.png")  else { fatalError("图片加载失败") }
+
+var menus = [SDiffuseMenuItem]()
+for _ in 0 ..< 9 {
+    let starMenuItem =  SDiffuseMenuItem(image: storyMenuItemImage,
+                                         highlightedImage: storyMenuItemImagePressed, contentImage: starImage,
+                                         highlightedContentImage: nil)
+    menus.append(starMenuItem)
+}
 ```
 ####3、设置菜单按钮
 ``` swift
-let startItem =  SDiffuseMenuItem(image: starItemNormalImage,
-                                             highlightedImage: starItemLightedImage,
-                                             contentImage: starItemContentImage,
-                                             highlightedContentImage: starItemContentLightedImage
-        )
+let startItem = SDiffuseMenuItem(image: starItemNormalImage,
+                                 highlightedImage: starItemLightedImage,
+                                 contentImage: starItemContentImage,
+                                 highlightedContentImage: starItemContentLightedImage)
 ```
 ####4、添加SDiffuseMenu
 ``` swift
 let menuRect = CGRect.init(x: self.menuView.bounds.size.width/2,
-                                   y: self.menuView.bounds.size.width/2,
-                                   width: self.menuView.bounds.size.width,
-                                   height: self.menuView.bounds.size.width)
-        menu =  SDiffuseMenu(frame:menuRect, startItem:startItem,
-                                 menusArray:menus as NSArray)
-        menu.center = self.menuView.center
-        menu.delegate = self
-        self.menuView.addSubview(menu)
+                           y: self.menuView.bounds.size.width/2,
+                           width: self.menuView.bounds.size.width,
+                           height: self.menuView.bounds.size.width)
+menu =  SDiffuseMenu(frame:menuRect, startItem:startItem,
+                         menusArray:menus as NSArray)
+menu.center = self.menuView.center
+menu.delegate = self
+self.menuView.addSubview(menu)
 ```
 ####5、动画配置
 
-注意：动画中半径的变化:0--> 最大farRadius--> 最小nearRadius--> 结束endRadius
+动画中半径的变化:0--> 最大farRadius--> 最小nearRadius--> 结束endRadius
 ``` swift
 // 动画时长
 menu.animationDuration  = CFTimeInterval(animationDrationValue.text!)
@@ -91,8 +90,8 @@ menu.rotateAddButtonAngle = CGFloat((rotateAddButtonAngleValue.text! as NSString
 ####6、动画过程监听
 ``` swift
 func SDiffuseMenuDidSelectMenuItem(_ menu: SDiffuseMenu, didSelectIndex index: Int) {
-        print("选中按钮at index:\(index) is: \(menu.menuItemAtIndex(index)) ")
-    }
+    print("选中按钮at index:\(index) is: \(menu.menuItemAtIndex(index)) ")
+}
 
 func SDiffuseMenuDidClose(_ menu: SDiffuseMenu) {
     print("菜单关闭动画结束")
@@ -141,9 +140,9 @@ func SDiffuseMenuWillClose(_ menu: SDiffuseMenu) {
 
 - 菜单按钮的自旋转，通过transform属性即可实现；
 - 选项按钮的整体展开动画，实际是在定时器中依次添加单个选项按钮的动画组，控制timeInterval来实现动画的先后执行顺序；
-- 单个动画则拆分为3部分：展开动画、结束动画和点击动画，都是动画组，下边以结束动画为例，简单介绍其实现过程。
+- 单个选项按钮的动画则拆分为3部分：展开动画、结束动画和点击动画，都是动画组，下边以结束动画为例，简单介绍其实现过程。
 
-##### 2.1、单个选项关闭动画分析：
+#### 2.1、单个选项关闭动画分析：
 
 动画过程：点击菜单关闭动画 -> 菜单旋转复位；选项按钮自旋+从endRadius移动到farRadius ->选项按钮到达farRadius之后：开始返回+同时自旋转 -> 然后回到起始点。
 
@@ -153,13 +152,13 @@ func SDiffuseMenuWillClose(_ menu: SDiffuseMenu) {
 
 展开动画中设置的关键帧如下，0.3对应expandRotation展开自选角度，0.4对应0°，所以在0.3 -> 0.4的时间会出现快速的自旋。
 ``` swift
-rotateAnimation.values = [CGFloat(expandRotation),CGFloat(0.0)]
+rotateAnimation.values   = [CGFloat(expandRotation),CGFloat(0.0)]
 rotateAnimation.keyTimes = [NSNumber(value: 0.3 as Float),  NSNumber(value: 0.4 as Float)]
 ```
 
 而关闭的动画中，我设置如下，细化了关键帧，可以看出自旋的动画细节丰富一些，0 -> 0.4 慢速自旋，0.4 -> 0.5 快速自旋。
 ``` swift
-rotateAnimation.values = [CGFloat(0.0),CGFloat(closeRotation),CGFloat(0.0)]
+rotateAnimation.values   = [CGFloat(0.0),CGFloat(closeRotation),CGFloat(0.0)]
 rotateAnimation.keyTimes = [NSNumber(value: 0.0 as Float),NSNumber(value: 0.4 as Float), NSNumber(value: 0.5 as Float)]
 ```
 
@@ -171,7 +170,7 @@ rotateAnimation.keyTimes = [NSNumber(value: 0.0 as Float),NSNumber(value: 0.4 as
 let positionAnimation =  CAKeyframeAnimation(keyPath: "position")
 positionAnimation.duration = animationDuration
 ```
-使用贝塞尔曲线作为path,从代码中可以明显的看出移动的路径：endPoint -> farPoint -> startPoint
+1)\使用贝塞尔曲线作为path,从代码中可以明显的看出移动的路径：endPoint -> farPoint -> startPoint
 ``` swift
 let path = UIBezierPath.init()
 path.move(to: CGPoint(x: item.endPoint.x, y: item.endPoint.y))
@@ -179,7 +178,7 @@ path.addLine(to: CGPoint(x: item.farPoint.x, y: item.farPoint.y))
 path.addLine(to: CGPoint(x: item.startPoint.x, y: item.startPoint.y))
 positionAnimation.path = path.cgPath
 ```
-或者使用CGPathRef或GCMutablePathRef设置路径
+2)\使用CGPathRef或GCMutablePathRef设置路径
 ``` swift
 let path =  CGMutablePath()
 path.move(to: CGPoint(x: item.endPoint.x, y: item.endPoint.y))
@@ -190,18 +189,18 @@ positionAnimation.path = path
 
 自旋和平移都有了，接下来要加入到动画组中：
 ``` swift
-let animationgroup =  CAAnimationGroup()
-animationgroup.animations = [positionAnimation, rotateAnimation]
-animationgroup.duration = animationDuration
+let animationgroup              =  CAAnimationGroup()
+animationgroup.animations       = [positionAnimation, rotateAnimation]
+animationgroup.duration         = animationDuration
 // 动画结束后，layer保持最终的状态
-animationgroup.fillMode = kCAFillModeForwards
+animationgroup.fillMode         = kCAFillModeForwards
 // 速度控制我设置的如此，大家根据需要自行修改即可
-animationgroup.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
+animationgroup.timingFunction   = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
 // 代理是为了获取到动画结束的信号
-animationgroup.delegate = self
+animationgroup.delegate         = self
 ```
 
-然后添加进layer即可
+最添加进layer即可
 ``` swift
 item.layer.add(animationgroup,forKey: "Close")
 ```
@@ -211,9 +210,9 @@ item.layer.add(animationgroup,forKey: "Close")
 
 
 
-##### 2.2、整体动画的控制
+#### 2.2、整体动画的控制
 
-注意，整体动画的控制上边并未表述，在这个地方也需要注意下，为了让整体动画在一个合适的角度展示出来，就需要从整体上控制角度。
+注意，整体动画的控制以上并未表述，在这个地方也需要注意下，为了让整体动画在一个合适的角度展示出来，就需要从整体上控制角度。
 
 ![](https://ooo.0o0.ooo/2017/01/16/587c8c512c911.png)
 ![](https://ooo.0o0.ooo/2017/01/16/587c8c7530072.png)
@@ -221,16 +220,16 @@ item.layer.add(animationgroup,forKey: "Close")
 
 从上图中可以看出，整体的角度是由menuWholeAngle和rotateAngle共同控制的。
 
-- menuWholeAngle控制整体动画的范围角度；
-- rotateAngle用于控制整体的偏移角度
+- menuWholeAngle: 控制整体动画的范围角度；
+- rotateAngle: 用于控制整体的偏移角度
 
 
 
-为了方便不理解整体角度控制的伙伴们，我以结束位置为例画了CAD图，如下：
+为了方便理解整体角度的控制，我以结束位置为例画了CAD图，如下：
 ![](https://ooo.0o0.ooo/2017/01/18/587ed1cc7e674.png)
 提醒：下文所述的坐标计算都是基于笛卡儿坐标系，注意与UIKit中坐标系的异同。
 
-关于图说明如下：
+关于上图，说明如下：
 - 1、图中有5个选项按钮和一个菜单按钮，整体角度是menuWholeAngle，选项中心夹角β；
 - 2、假设偏移角度rotateAngle=0，则以红色线为坐标轴XY，下文先以此为准进行坐标计算；
 - 3、假设整体偏移角度rotateAngle!=0，那么以蓝色为坐标轴XY，其中偏移角度就是rotateAngle。
@@ -248,11 +247,13 @@ var x         = startPoint.x + CGFloat(endRadius) * sinValue
 var y         = (CGFloat(startPoint.y) - endRadius * cosValue)
 let endPoint  =  CGPoint(x: x,y: y)
 item.endPoint = endPoint // _rotateCGPointAroundCenter(endPoint, center: startPoint, angle: rotateAngle)
+
 // 最近点坐标，计算方法同CAD图中的结束点坐标
 x = startPoint.x + nearRadius * CGFloat(sinValue)
 y = startPoint.y - nearRadius * CGFloat(cosValue)
 let nearPoint  =  CGPoint(x: x, y: y)
 item.nearPoint = nearPoint // _rotateCGPointAroundCenter(nearPoint, center: startPoint, angle: rotateAngle)
+
 // 最远点坐标，计算方法同CAD图中的结束点坐标
 let farPoint   =  CGPoint(x: startPoint.x + farRadius * sinValue, y: startPoint.y - farRadius * cosValue)
 item.farPoint  = farPoint //  _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle)
@@ -278,7 +279,7 @@ private func _rotateCGPointAroundCenter( _ point: CGPoint, center: CGPoint, angl
 
 ### 3、事件响应链
 
-这个小标题有点夸张，其实这里并没有直接使用hitTest寻找响应View。而是在两处使用相关的知识
+其实这里并没有直接使用hitTest寻找响应View，而是在两处使用相关的知识
 
 **3.1、利用'point(inside point: CGPoint, with event: UIEvent?) -> Bool'来控制touch事件的分发**
 
@@ -324,11 +325,12 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 
 // 增大点击范围，还可以在point方法中判断，不过就需要SDiffuseMenu.swift跟着调整了，这一期先不采用第二种方法，下期再尝试。
 ```
-下图是ScaleRect方法小测试，是不是很好用啊😁😁
+下图是ScaleRect方法小测试，看着是不是很好用啊😁😁
 
 ![](https://ooo.0o0.ooo/2017/01/18/587f06c314ded.png)
 
->这一版的SDiffuseMenu,和AwesomeMenu基本是一样的，接下来的一版我会增加多方向的直线弹出和收缩，喜欢的朋友还请给个star哦，我会努力优化的~
+>这一版的SDiffuseMenu和AwesomeMenu基本是一样的，接下来的一版我会增加多方向的直线弹出排列动画，喜欢的朋友还请给个star哦，我会努力优化的~
+>还有上边的问题的答案，我猜测是Core Animation Layer。
 
 
 最后分享下Swift学习心得：
@@ -337,7 +339,7 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 - 参照官方给出的demo，以及修订blog;
 - 使用Playground，这个真好用，下边附图;
 - 参考资料我也总结了下，[请戳此处](https://github.com/mythkiven/SourceOfSwift)
-- 做个广告：针对Swift3.0.1，我写了小教程放在个人博客，近期访问有点问题，先不放网址了哈
+- 做个广告：针对Swift3.0.1，我写了小教程放在个人博客，只是近期修改了设置访问有点问题..
 
 
 

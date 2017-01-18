@@ -426,8 +426,6 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     
     private func _setMenu() {
         
-        print("menuWholeAngle\(menuWholeAngle)")
-        print("rotateAngle\(rotateAngle)")
         for index in 0 ..< menusItems.count {
             
             let icount      = CGFloat(menusItems.count)
@@ -439,7 +437,6 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
             if (menuWholeAngle >= CGFloat(M_PI * 2)) {
                 menuWholeAngle = menuWholeAngle - menuWholeAngle / (icount)
             }
-            print("menuWholeAngle\(menuWholeAngle)")
             
             let sinValue  = CGFloat(sinf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
             let cosValue  = CGFloat(cosf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
