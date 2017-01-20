@@ -1,21 +1,19 @@
 //
-//  SDiffuseMenu.swift
-//  SDiffuseMenu
 //
-//  Created by 蒋孝才 on 17/1/11.
-//  github地址:https://github.com/mythkiven
+//  V1.1.0
 //
-//  Copyright © 2017年 mythkiven. All rights reserved.
+//  Created by mythkiven on 17/1/11.
+//  github 地址:https://github.com/mythkiven
 //
-//  本动画是Swift版本的AwesomeMenu，OC版请参考https://github.com/levey/AwesomeMenu；
-//  为方便注释，下边将add菜单按钮简称：菜单按钮，其余菜单选项按钮简称：选项按钮
-//  代码相关的注解参见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md；
-//  在使用中如果出现BUG，或者优化的地方，还请提Issues，感谢！
-
+//  说明如下:
+//  1、本动画是 Swift 版本的 AwesomeMenu,OC 版请参考 https://github.com/levey/AwesomeMenu
+//  2、代码解析见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
+//  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 
 
 import UIKit
 import QuartzCore
+
 
 protocol SDiffuseMenuDelegate : NSObjectProtocol {
     
@@ -33,13 +31,151 @@ protocol SDiffuseMenuDelegate : NSObjectProtocol {
 
 class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     
-    // MARK: - 属性
     
-    var menusItems: NSArray!{// 菜单数据源
+    /// 动画展示的2种类型:直线状\圆弧状
+    public enum SDiffuseMenuGrapyType : String {
+        case line
+        case arc
+    }
+    
+    /// 动画展示的角度:已给出常见的8个方位可直接使用,默认upperRight
+    /// 本枚举对 line 和 arc 皆有效
+    public enum SDiffuseMenuDirection : String {
+        case above      // 上方180°
+        
+        case left       // 左方180°
+        
+        case right      // 右方180°
+        
+        case below      // 下方180°
+        
+        case upperLeft  // 左上方90°
+        
+        case upperRight // 右上方90°
+        
+        case lowerLeft  // 左下方90°
+        
+        case lowerRight // 右下方90°
+        
+        case other      // 其他方向
+    }
+    
+    
+    // MARK: - 属性
+   
+
+    ///弧线动画,则动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
+    ///直线动画,则半径长度就是线段的长度,线段长度从0 -->farRadius-->nearRadius-->endRadius
+    var nearRadius:             CGFloat!
+    var endRadius:              CGFloat!
+    var farRadius:              CGFloat!
+    
+    /// 动画起始点
+    var startPoint:             CGPoint!
+    
+    /// 单个动画开始执行时间间隔
+    var timeOffset:             TimeInterval = 0
+    
+    /// 整体偏移角度，注意与menuWholeAngle差异，一般默认0不偏移
+    var rotateAngle:            CGFloat!
+    
+    /// 如果是弧线动画,则 menuWholeAngle配置弧线的圆心角
+    /// 如果是直线动画,则 menuWholeAngle未参与计算,值无效
+    var menuWholeAngle:         CGFloat!
+    
+    /// 展开时选项自旋角度
+    var expandRotation:         CGFloat!
+    
+    /// 关闭时选项自旋角度
+    var closeRotation:          CGFloat!
+    
+    /// 动画时长
+    var animationDuration:      CFTimeInterval!
+    
+    /// 是否要旋转菜单按钮
+    var rotateAddButton:        Bool!
+    
+    /// 旋转菜单按钮旋转的角度
+    var rotateAddButtonAngle:   CGFloat!
+    
+    /// 是否在展开状态
+    var expanding:              Bool = false
+    
+    /// delegate
+    var delegate:               SDiffuseMenuDelegate!
+    
+    /// 动画的类型:默认弧线动画
+    var sDiffuseMenuGrapyType:  SDiffuseMenuGrapyType = .arc {
+        didSet {
+            if  menusItems.count > 0 {
+                _setMenu(immediateActivity: false)
+            }
+        }
+    }
+    
+    /// 动画的方向:方向默认右上角
+    var sDiffuseMenuDirection: SDiffuseMenuDirection = .upperRight {
+        didSet {
+            var lineRotateAngle = CGFloat(0.0)
+            
+            switch sDiffuseMenuDirection {
+            case .above: // 上方 180°
+                menuWholeAngle  = CGFloat(M_PI)
+                rotateAngle     = CGFloat(M_PI_2*3)
+                lineRotateAngle = CGFloat(0.0)
+                
+            case .left: // 左方 180°
+                menuWholeAngle  = CGFloat(M_PI)
+                rotateAngle     = CGFloat(M_PI)
+                lineRotateAngle = CGFloat(-M_PI_2)
+                
+            case .below: // 下方 180°
+                menuWholeAngle  = CGFloat(M_PI)
+                rotateAngle     = CGFloat(M_PI_2)
+                lineRotateAngle = CGFloat(M_PI)
+                
+            case .right: // 右方 180°
+                menuWholeAngle  = CGFloat(M_PI)
+                rotateAngle     = CGFloat(0)
+                lineRotateAngle = CGFloat(M_PI_2)
+                
+            case .upperLeft: // 左上角90°
+                menuWholeAngle  = CGFloat(M_PI_2)
+                rotateAngle     = CGFloat(-M_PI_2)
+                lineRotateAngle = CGFloat(-M_PI_4)
+                
+            case .upperRight: // 右上角90°
+                menuWholeAngle  = CGFloat(M_PI_2)
+                rotateAngle     = CGFloat(0)
+                lineRotateAngle = CGFloat(M_PI_4)
+                
+            case .lowerLeft: // 左下角90°
+                menuWholeAngle  = CGFloat(M_PI_2)
+                rotateAngle     = CGFloat(-M_PI)
+                lineRotateAngle = CGFloat(-M_PI_4*3)
+                
+            case .lowerRight: // 右下角90°
+                menuWholeAngle  = CGFloat(M_PI_2)
+                rotateAngle     = CGFloat(M_PI_2)
+                lineRotateAngle = CGFloat(M_PI_4*3)
+                
+            default:
+                break
+            }
+            
+            if sDiffuseMenuGrapyType == SDiffuseMenuGrapyType.line { // 直线形
+                rotateAngle = lineRotateAngle
+            }
+        }
+    }
+    
+    /// 选项数组
+    var menusItems: NSArray!{
         willSet {
             if (menusItems == newValue) {
                 return
             }
+            
             for v in self.subviews {
                 if (v.tag >= 1000) {
                     v.removeFromSuperview()
@@ -47,25 +183,12 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
             }
         }
     }
-    var expanding:              Bool = false // 是否在展开状态
-    var nearRadius:             CGFloat! // 动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
-    var endRadius:              CGFloat! // 动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
-    var farRadius:              CGFloat! // 动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
-    var startPoint:             CGPoint! // 动画起始点
-    var timeOffset:             TimeInterval = 0 // 单个动画开始执行时间间隔
-    var rotateAngle:            CGFloat! // 整体偏移角度，注意与menuWholeAngle差异，一般默认0不偏移
-    var menuWholeAngle:         CGFloat! // 所有选项的整体角度,360°:M_PI * 2, 右上角90°:M_PI_2, ...
-    var expandRotation:         CGFloat! // 展开时选项自旋角度
-    var closeRotation:          CGFloat! // 关闭时选项自旋角度
-    var animationDuration:      CFTimeInterval!// 动画时长
-    var rotateAddButton:        Bool! // 是否要旋转菜单按钮
-    var rotateAddButtonAngle:   CGFloat! // 旋转菜单按钮旋转的角度
-    var delegate:               SDiffuseMenuDelegate!
     
     private var _flag:          Int = 0
     private var _timer:         Timer!
     private var _startButton:   SDiffuseMenuItem!
     private var _isAnimating:   Bool = false
+    
     
     let kDiffuseMenuDefaultNearRadius                   = CGFloat(110.0)
     let kDiffuseMenuDefaultEndRadius                    = CGFloat(120.0)
@@ -83,27 +206,33 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     
     
     // MARK: - 初始化
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
     }
     
-    init(frame: CGRect, startItem: SDiffuseMenuItem, menusArray: NSArray) {
+    
+    init(frame: CGRect, startItem: SDiffuseMenuItem, menusArray: NSArray, grapyType: SDiffuseMenuGrapyType) {
         super.init(frame: frame)
         
-        self.nearRadius     = kDiffuseMenuDefaultNearRadius
-        self.endRadius      = kDiffuseMenuDefaultEndRadius
-        self.farRadius      = kDiffuseMenuDefaultFarRadius
-        self.timeOffset     = Double(kDiffuseMenuDefaultTimeOffset)
-        self.rotateAngle    = kDiffuseMenuDefaultRotateAngle
-        self.menuWholeAngle = kDiffuseMenuDefaultMenuWholeAngle
-        self.startPoint     = CGPoint(x: kDiffuseMenuDefaultStartPointX, y: kDiffuseMenuDefaultStartPointY)
-        self.expandRotation = kDiffuseMenuDefaultExpandRotation
-        self.closeRotation  = kDiffuseMenuDefaultCloseRotation
+        self.sDiffuseMenuGrapyType  = grapyType
+        
+        self.nearRadius             = kDiffuseMenuDefaultNearRadius
+        self.endRadius              = kDiffuseMenuDefaultEndRadius
+        self.farRadius              = kDiffuseMenuDefaultFarRadius
+        self.timeOffset             = Double(kDiffuseMenuDefaultTimeOffset)
+        self.rotateAngle            = kDiffuseMenuDefaultRotateAngle
+        self.menuWholeAngle         = kDiffuseMenuDefaultMenuWholeAngle
+        self.startPoint             = CGPoint(x: kDiffuseMenuDefaultStartPointX, y: kDiffuseMenuDefaultStartPointY)
+        self.expandRotation         = kDiffuseMenuDefaultExpandRotation
+        self.closeRotation          = kDiffuseMenuDefaultCloseRotation
         self.animationDuration      = Double(kDiffuseMenuDefaultAnimationDuration)
         self.rotateAddButton        = true
         self.rotateAddButtonAngle   = kDiffuseMenuRotateAddButtonAngle
         self.backgroundColor        = UIColor.white
+        
         self.menusItems             = menusArray
         _startButton                = startItem
         _startButton.delegate       = self
@@ -112,38 +241,43 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         self.addSubview(_startButton)
     }
     
-    // MARK: - image
-    func setStartPoint(_ aPoint: CGPoint) {
-        startPoint          = aPoint
-        _startButton.center = aPoint
-    }
-    func setImage(_ image: UIImage) {
-        _startButton.image = image
-    }
-    func image() -> UIImage {
-        return _startButton.image!
-    }
-    func setHighlightedImage(_ highlightedImage: UIImage) {
-        _startButton.highlightedImage = highlightedImage
-    }
-    func getHighlightedImage() -> UIImage {
-        return _startButton.highlightedImage!
-    }
-    func setContentImage(_ contentImage: UIImage) {
-        _startButton.contentImageView.image = contentImage
-    }
-    func getContentImage() -> UIImage {
-        return _startButton.contentImageView.image!
-    }
-    func setHighlightedContentImage(_ highlightedContentImage: UIImage) {
-        _startButton.contentImageView.highlightedImage = highlightedContentImage
-    }
-    func getHighlightedContentImage() -> UIImage {
-        return _startButton.contentImageView.highlightedImage!
-    }
+    
+//
+//    func setStartPoint(_ aPoint: CGPoint) {
+//        startPoint          = aPoint
+//        _startButton.center = aPoint
+//    }
+//    func setImage(_ image: UIImage) {
+//        _startButton.image = image
+//    }
+//    func image() -> UIImage {
+//        return _startButton.image!
+//    }
+//    func setHighlightedImage(_ highlightedImage: UIImage) {
+//        _startButton.highlightedImage = highlightedImage
+//    }
+//    func getHighlightedImage() -> UIImage {
+//        return _startButton.highlightedImage!
+//    }
+//    func setContentImage(_ contentImage: UIImage) {
+//        _startButton.contentImageView.image = contentImage
+//    }
+//    func getContentImage() -> UIImage {
+//        return _startButton.contentImageView.image!
+//    }
+//    func setHighlightedContentImage(_ highlightedContentImage: UIImage) {
+//        _startButton.contentImageView.highlightedImage = highlightedContentImage
+//    }
+//    func getHighlightedContentImage() -> UIImage {
+//        return _startButton.contentImageView.highlightedImage!
+//    }
+    
+
     
     // MARK: - public
     
+    
+    /// 展开动画
     public func open() {
         if _isAnimating == true || self.expanding == true {
             return
@@ -151,6 +285,7 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         _expandingMenu(true)
     }
     
+    /// 关闭动画
     public func close() {
         if _isAnimating == true || self.expanding == false {
             return
@@ -158,6 +293,7 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         _expandingMenu(false)
     }
     
+    /// 某 index 对应的选项
     public func menuItemAtIndex(_ index: Int) -> SDiffuseMenuItem? {
         if index >= menusItems.count {
              return nil
@@ -165,7 +301,9 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         return menusItems.object(at: index) as? SDiffuseMenuItem
     }
     
+    
     // MARK: - SDiffuseMenuItemDelegate
+    
     
     func SDiffuseMenuItemTouchesBegan(_ item: SDiffuseMenuItem) {
         if (item == _startButton) {
@@ -192,6 +330,7 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
             otherItem.layer.add(shrink, forKey: "shrink")
             otherItem.center = otherItem.startPoint
         }
+        
         expanding = false
         
         let angle =  self.expanding ? -M_PI_4 : 0.0
@@ -203,15 +342,20 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         self.delegate.SDiffuseMenuDidSelectMenuItem(self, didSelectIndex: (item.tag - 1000))
     }
     
-    // MARK: - 事件链
+    
+    // MARK: - touch
+    
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if (_isAnimating) {
             return false
+            
         }else if (true == expanding) {
             return true
+            
         } else {
             return _startButton.frame.contains(point)
+            
         }
     }
     
@@ -229,11 +373,13 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         }
     }
     
+    
     // MARK: - private
+    
     
     private func _expandingMenu(_ expanding: Bool) {
         if (expanding) {
-            self._setMenu()
+            self._setMenu(immediateActivity: true)
             self.delegate?.SDiffuseMenuWillOpen(self)
         }else {
             self.delegate?.SDiffuseMenuWillClose(self)
@@ -243,7 +389,6 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         
         if ((rotateAddButton) == true) {
             let angle = self.expanding ? rotateAddButtonAngle : 0.0
-            
             UIView.animate(withDuration: Double(kDiffuseMenuStartMenuDefaultAnimationDuration), animations: {
                 ()-> Void in
                 self._startButton.transform = CGAffineTransform(rotationAngle: CGFloat(angle!))
@@ -258,7 +403,6 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
                            selector: selector,
                            userInfo: nil,
                            repeats: true)
-            
             RunLoop.current.add(_timer, forMode: RunLoopMode.commonModes)
             _isAnimating = true
         }
@@ -279,13 +423,17 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         
         let item = self.viewWithTag(tag) as! SDiffuseMenuItem
         
-        let rotateAnimation =  CAKeyframeAnimation(keyPath:"transform.rotation.z")
-        rotateAnimation.values = [CGFloat(expandRotation),CGFloat(0.0)]
-        rotateAnimation.duration = animationDuration
-        rotateAnimation.keyTimes = [NSNumber(value: 0.3 as Float),  NSNumber(value: 0.4 as Float)]
+        let rotateAnimation         =  CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        rotateAnimation.values      = [CGFloat(0.0),
+                                       CGFloat(expandRotation),
+                                       CGFloat(0.0)]
+        rotateAnimation.duration    = animationDuration
+        rotateAnimation.keyTimes    = [NSNumber(value: 0.1 as Float),
+                                       NSNumber(value: 0.3 as Float),
+                                       NSNumber(value: 0.4 as Float)]
         
-        let positionAnimation =  CAKeyframeAnimation(keyPath:"position")
-        positionAnimation.duration = animationDuration
+        let positionAnimation       =  CAKeyframeAnimation(keyPath: "position")
+        positionAnimation.duration  = animationDuration
         
         let path = UIBezierPath.init()
         path.move(to: CGPoint(x: item.startPoint.x, y: item.startPoint.y))
@@ -305,19 +453,18 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
          
          */
         
-        let animationgroup =  CAAnimationGroup()
-        animationgroup.animations = [positionAnimation, rotateAnimation ]
-        animationgroup.duration = animationDuration
-        animationgroup.fillMode = kCAFillModeForwards
-        animationgroup.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
-        
-        animationgroup.delegate = self
+        let animationgroup          =  CAAnimationGroup()
+        animationgroup.animations   = [positionAnimation, rotateAnimation ]
+        animationgroup.duration     = animationDuration
+        animationgroup.fillMode     = kCAFillModeForwards
+        animationgroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        animationgroup.delegate     = self
         
         if(_flag == menusItems.count - 1) {
-            animationgroup.setValue("firstAnimation",forKey:"id")
+            animationgroup.setValue("firstAnimation", forKey: "id")
         }
         
-        item.layer.add(animationgroup,forKey:"Expand")
+        item.layer.add(animationgroup, forKey: "Expand")
         item.center = item.endPoint
         
         _flag += 1
@@ -331,16 +478,20 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
             return
         }
         
-        let tag =  1000 + _flag
+        let tag  =  1000 + _flag
         let item =  self.viewWithTag(tag) as! SDiffuseMenuItem
         
-        let rotateAnimation =  CAKeyframeAnimation(keyPath:"transform.rotation.z")
-        rotateAnimation.values = [CGFloat(0.0),CGFloat(closeRotation),CGFloat(0.0)]
-        rotateAnimation.duration = animationDuration
-        rotateAnimation.keyTimes = [NSNumber(value: 0.0 as Float),    NSNumber(value: 0.4 as Float),                                NSNumber(value: 0.5 as Float)]
+        let rotateAnimation         =  CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        rotateAnimation.values      = [CGFloat(0.0),
+                                       CGFloat(closeRotation),
+                                       CGFloat(0.0)]
+        rotateAnimation.duration    = animationDuration
+        rotateAnimation.keyTimes    = [NSNumber(value: 0.0 as Float),
+                                       NSNumber(value: 0.4 as Float),
+                                       NSNumber(value: 0.5 as Float)]
         
-        let positionAnimation =  CAKeyframeAnimation(keyPath:"position")
-        positionAnimation.duration = animationDuration
+        let positionAnimation       =  CAKeyframeAnimation(keyPath: "position")
+        positionAnimation.duration  = animationDuration
         
         let path = UIBezierPath.init()
         path.move(to: CGPoint(x: item.endPoint.x, y: item.endPoint.y))
@@ -358,18 +509,18 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
          
          */
         
-        let animationgroup =  CAAnimationGroup()
-        animationgroup.animations = [positionAnimation, rotateAnimation]
-        animationgroup.duration = animationDuration
-        animationgroup.fillMode = kCAFillModeForwards
+        let animationgroup          =  CAAnimationGroup()
+        animationgroup.animations   = [positionAnimation, rotateAnimation]
+        animationgroup.duration     = animationDuration
+        animationgroup.fillMode     = kCAFillModeForwards
         animationgroup.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
-        animationgroup.delegate = self
+        animationgroup.delegate     = self
         
         if(_flag == 0){
-            animationgroup.setValue("lastAnimation",forKey:"id")
+            animationgroup.setValue("lastAnimation", forKey: "id")
         }
         
-        item.layer.add(animationgroup,forKey:"Close")
+        item.layer.add(animationgroup, forKey: "Close")
         item.center = item.startPoint
         
         _flag -= 1
@@ -377,14 +528,14 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
     
     private func _blowupAnimationAtPoint(_ p:CGPoint) -> CAAnimationGroup {
         
-        let positionAnimation =  CAKeyframeAnimation(keyPath:"position")
+        let positionAnimation =  CAKeyframeAnimation(keyPath: "position")
         positionAnimation.values = [NSValue(cgPoint: p)]
         positionAnimation.keyTimes = [NSNumber(value: 0.3 as Float)]
         
-        let scaleAnimation =  CABasicAnimation(keyPath:"transform")
-        scaleAnimation.toValue = NSValue(caTransform3D:CATransform3DMakeScale(3.0, 3.0, 1.0))
+        let scaleAnimation =  CABasicAnimation(keyPath: "transform")
+        scaleAnimation.toValue = NSValue(caTransform3D: CATransform3DMakeScale(3.0, 3.0, 1.0))
         
-        let opacityAnimation =  CABasicAnimation(keyPath:"opacity")
+        let opacityAnimation =  CABasicAnimation(keyPath: "opacity")
         opacityAnimation.toValue  = NSNumber(value: 0.0 as Float)
         
         let animationgroup =  CAAnimationGroup()
@@ -395,22 +546,22 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         return animationgroup
     }
     
-    private func _shrinkAnimationAtPoint(_ p:CGPoint) -> CAAnimationGroup {
+    private func _shrinkAnimationAtPoint(_ p: CGPoint) -> CAAnimationGroup {
         
-        let positionAnimation =  CAKeyframeAnimation(keyPath:"position")
-        positionAnimation.values = [ NSValue(cgPoint: p) ]
-        positionAnimation.keyTimes = [ NSNumber(value: 0.3 as Float) ]
+        let positionAnimation       =  CAKeyframeAnimation(keyPath: "position")
+        positionAnimation.values    = [ NSValue(cgPoint: p) ]
+        positionAnimation.keyTimes  = [ NSNumber(value: 0.3 as Float) ]
         
-        let scaleAnimation =  CABasicAnimation(keyPath:"transform")
-        scaleAnimation.toValue = NSValue(caTransform3D: CATransform3DMakeScale(0.01, 0.01, 1))
+        let scaleAnimation          =  CABasicAnimation(keyPath: "transform")
+        scaleAnimation.toValue      = NSValue(caTransform3D: CATransform3DMakeScale(0.01, 0.01, 1))
         
-        let opacityAnimation =  CABasicAnimation(keyPath:"opacity")
-        opacityAnimation.toValue  = NSNumber(value: 0.0 as Float)
+        let opacityAnimation        =  CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.toValue    = NSNumber(value: 0.0 as Float)
         
-        let animationgroup =  CAAnimationGroup()
-        animationgroup.animations = [positionAnimation, scaleAnimation, opacityAnimation]
-        animationgroup.duration = animationDuration
-        animationgroup.fillMode = kCAFillModeForwards
+        let animationgroup          =  CAAnimationGroup()
+        animationgroup.animations   = [positionAnimation, scaleAnimation, opacityAnimation]
+        animationgroup.duration     = animationDuration
+        animationgroup.fillMode     = kCAFillModeForwards
         
         return animationgroup
     }
@@ -424,7 +575,11 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
         return point.applying(transformGroup)
     }
     
-    private func _setMenu() {
+    private func _setMenu(immediateActivity: Bool) {
+        
+        if !immediateActivity && (_isAnimating == true || expanding == true ){
+            return
+        }
         
         for index in 0 ..< menusItems.count {
             
@@ -438,24 +593,58 @@ class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate {
                 menuWholeAngle = menuWholeAngle - menuWholeAngle / (icount)
             }
             
-            let sinValue  = CGFloat(sinf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
-            let cosValue  = CGFloat(cosf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
+            var sinValue = CGFloat(0.0)
+            var cosValue = CGFloat(0.0)
             
-            var x         = startPoint.x + CGFloat(endRadius) * sinValue
-            var y         = (CGFloat(startPoint.y) - endRadius * cosValue)
-            let endPoint  =  CGPoint(x: x,y: y)
-            item.endPoint = _rotateCGPointAroundCenter(endPoint, center: startPoint, angle: rotateAngle)
+            if icount == 1 {
+                sinValue = CGFloat(sinf(Float(menuWholeAngle / 2)))
+                cosValue = CGFloat(cosf(Float(menuWholeAngle / 2)))
+            }else {
+                sinValue = CGFloat(sinf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
+                cosValue = CGFloat(cosf(Float(ti * menuWholeAngle / (icount - CGFloat(1.0)))))
+            }
             
-            x = startPoint.x + nearRadius * CGFloat(sinValue)
-            y = startPoint.y - nearRadius * CGFloat(cosValue)
-            let nearPoint  =  CGPoint(x: x, y: y)
-            item.nearPoint = _rotateCGPointAroundCenter(nearPoint, center: startPoint, angle: rotateAngle)
             
-            let farPoint   =  CGPoint(x: startPoint.x + farRadius * sinValue, y: startPoint.y - farRadius * cosValue)
-            item.farPoint  = _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle)
+            
+            if sDiffuseMenuGrapyType == SDiffuseMenuGrapyType.line { // 直线形
+                var x           = startPoint.x
+                var y           = startPoint.y + ti * CGFloat(endRadius / (icount + 1))
+                let endPoint    =  CGPoint(x: x,y: y)
+                item.endPoint   = _rotateCGPointAroundCenter(endPoint, center: startPoint, angle:  rotateAngle - CGFloat(M_PI))
+                
+                x               = startPoint.x
+                y               = startPoint.y + ti * CGFloat(nearRadius / (icount + 1))
+                let nearPoint   =  CGPoint(x: x, y: y)
+                item.nearPoint  = _rotateCGPointAroundCenter(nearPoint, center: startPoint, angle: rotateAngle - CGFloat(M_PI))
+                
+                x               = startPoint.x
+                y               = startPoint.y + ti * CGFloat(farRadius / (icount + 1))
+                let farPoint    =  CGPoint(x: x, y: y)
+                item.farPoint   = _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle - CGFloat(M_PI))
+                
+            }else { // 弧线形
+                var x           = startPoint.x + CGFloat(endRadius) * sinValue
+                var y           = (CGFloat(startPoint.y) - endRadius * cosValue)
+                let endPoint    =  CGPoint(x: x,y: y)
+                item.endPoint   = _rotateCGPointAroundCenter(endPoint, center: startPoint, angle: rotateAngle)
+                
+                x               = startPoint.x + nearRadius * CGFloat(sinValue)
+                y               = startPoint.y - nearRadius * CGFloat(cosValue)
+                let nearPoint   =  CGPoint(x: x, y: y)
+                item.nearPoint  = _rotateCGPointAroundCenter(nearPoint, center: startPoint, angle: rotateAngle)
+                
+                x               = startPoint.x + farRadius * sinValue
+                y               = startPoint.y - farRadius * cosValue
+                let farPoint    =  CGPoint(x: x, y: y)
+                item.farPoint   = _rotateCGPointAroundCenter(farPoint, center: startPoint, angle: rotateAngle)
+            }
+            
             item.center    = item.startPoint
             item.delegate  = self
-            self.insertSubview(item, belowSubview:_startButton)
+            
+            if immediateActivity {
+                self.insertSubview(item, belowSubview:_startButton)
+            }
             
         }
     }

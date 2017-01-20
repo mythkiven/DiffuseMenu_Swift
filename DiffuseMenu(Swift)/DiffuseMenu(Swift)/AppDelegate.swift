@@ -1,13 +1,13 @@
 //
-//  AppDelegate.swift
-//  DiffuseMenu(Swift)
 //
-//  Created by 蒋孝才 on 17/1/11.
+//
+//  Created by mythkiven on 17/1/11.
 //  github地址:https://github.com/mythkiven
-//  如有任何问题，还请提issues
 //
-//  Copyright © 2017年 mythkiven. All rights reserved.
-//
+//  说明如下:
+//  1、本动画是 Swift 版本的 AwesomeMenu,OC 版请参考 https://github.com/levey/AwesomeMenu
+//  2、代码解析见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
+//  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 
 import UIKit
 

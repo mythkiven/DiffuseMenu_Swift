@@ -1,15 +1,14 @@
 //
-//  SDiffuseMenuItem.swift
-//  SDiffuseMenu
 //
-//  Created by 蒋孝才 on 17/1/11.
+//  V1.1.0
+// 
+//  Created by mythkiven on 17/1/11.
 //  github地址:https://github.com/mythkiven
-
-//  Copyright © 2017年 mythkiven. All rights reserved.
-
-//  本动画是Swift版本的AwesomeMenu，OC版请参考https://github.com/levey/AwesomeMenu；
-//  代码相关的注解参见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
-
+//
+//  说明如下:
+//  1、本动画是 Swift 版本的 AwesomeMenu,OC 版请参考 https://github.com/levey/AwesomeMenu
+//  2、代码解析见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
+//  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 
 import UIKit
 
@@ -29,7 +28,6 @@ class SDiffuseMenuItem : UIImageView {
     
     var delegate: SDiffuseMenuItemDelegate!
     
-    // 默认点击的范围是2倍范围
     let kDiffuseMenuItemDefaultTouchRange = CGFloat(2.0)
     
     required init?(coder aDecoder: (NSCoder!)) {
@@ -98,7 +96,6 @@ class SDiffuseMenuItem : UIImageView {
         if (!SDiffuseMenuItem.ScaleRect(self.bounds, n: kDiffuseMenuItemDefaultTouchRange).contains(location)) {
             self.isHighlighted = false
         }
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
