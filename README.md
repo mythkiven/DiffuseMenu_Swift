@@ -20,7 +20,7 @@
 
 - V1.1.0 在 V1.0.0 基础之上,新增任意方向的直线弹出动画,至此,SDiffuseMenu 已实现直线\弧线的菜单弹射动画
 - V1.1.0 新增常用方向的枚举,无需配置方向拿来即可使用
-
+- 更新内容\配图及修复小 BUG
 - 更多记录详情[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
 
 ## 一、使用方法：
