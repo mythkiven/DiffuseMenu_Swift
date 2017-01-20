@@ -6,9 +6,9 @@
 
 #### 2017-01-20  V1.1.0
 
-- 新增任意方位的直线形状动画:
+- 新增任意方位的直线型动画:
 
-1) 新增动画类型枚举:直线型 or 弧线形
+1 新增枚举,用于选择动画的形式:直线型 or 弧线形
 
 ``` swift
 public enum SDiffuseMenuGrapyType : String {
@@ -17,15 +17,15 @@ public enum SDiffuseMenuGrapyType : String {
 }
 ```
 
-2) 初始化方法,需传入动画类型
+2 在初始化中,需传入动画类型
 
 ``` swift
 init(frame: CGRect, startItem: SDiffuseMenuItem, menusArray: NSArray, grapyType: SDiffuseMenuGrapyType) {}
 ```
 
-3) 在初始化之后,仍可通过 `sDiffuseMenuGrapyType` 属性修改动画类型
+3 在初始化之后,仍可通过 `sDiffuseMenuGrapyType` 属性修改动画类型
 
-- 新增8个常见方位的枚举,无需自行设置方向,拿来即可使用:
+- 新增常见8个方位的枚举,无需自行设置方向,拿来即可使用:
 
 此枚举对 line 和 arc 两种动画形式皆有效
 
@@ -51,12 +51,12 @@ init(frame: CGRect, startItem: SDiffuseMenuItem, menusArray: NSArray, grapyType:
     }
 ```
 
-- 修复BUG: 传入仅含一个元素的数组时,计算报错的问题
+- 修复BUG: 传入数组仅含一个元素时计算报错
 
 
 #### 2017-01-18  V1.0.0
 
-V1.0.0版,实现任意方位的弧线型动画
+V1.0.0版,实现任意方位的弧线型动画。
 
 
 

@@ -1,5 +1,5 @@
 
-## AwesomeMenu 的 Swift 版改写之旅:SDiffuseMenu
+## Swift 版 AwesomeMenu 的改写之旅:SDiffuseMenu
 
 
 >本动画是 Swift 版的 AwesomeMenu,如需OC版还请移步[这里](https://github.com/levey/AwesomeMenu)。
@@ -11,7 +11,7 @@
 
 **动画效果如下:**
 
-![](https://github.com/mythkiven/DiffuseMenu_Swift/Source/SDiffuseMenu.gif)
+![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/SDiffuseMenu.gif)
 
 **配置图如下:**
 ![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/settingAngle.png)
@@ -21,7 +21,7 @@
 - V1.1.0 在 V1.0.0 基础之上,新增任意方向的直线弹出动画,至此,SDiffuseMenu 已实现直线\弧线的菜单弹射动画
 - V1.1.0 新增常用方向的枚举,无需配置方向拿来即可使用
 
-- 更多详详情[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md)
+- 更多记录详情[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
 
 ## 一、使用方法：
 
@@ -176,7 +176,7 @@ func SDiffuseMenuWillClose(_ menu: SDiffuseMenu) {
 
 不论多么复杂的动画,都是由简单的动画组成的,大家先看下 SDiffuseMenu 中单选项动画：
 
-![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/singleItemAnimation.gif)
+![](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/singleItemAnimation.gif)
 
 仔细分析发现可以将整个动画可以拆分为三大部分:
 
@@ -207,7 +207,7 @@ rotateAnimation.keyTimes = [NSNumber(value: 0.1 as Float),
                            NSNumber(value: 0.4 as Float)]
 ```
 
-而关闭的动画中,设置为0 -> 0.4 慢速自旋,0.4 -> 0.5 快速自旋。
+而关闭的动画中,设置为0 -> 0.4 慢速自旋,0.4 -> 0.5 快速自旋
 
 ``` swift
 rotateAnimation.values   = [CGFloat(0.0),
@@ -221,7 +221,7 @@ rotateAnimation.keyTimes = [NSNumber(value: 0.0 as Float),
 
 **2、移动**
 
-移动的控制在于 path 是怎样设定的,代码中我写了两种方法,其中一种被注释掉。
+移动的控制在于 path 是怎样设定的,代码中我写了两种方法,其中一种被注释掉
 
 ``` swift
 let positionAnimation      =  CAKeyframeAnimation(keyPath: "position")
