@@ -393,7 +393,6 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 >欢迎大神有空帮忙优化下代码😁😁
 >
 
-如有需评论,还请移步☞[我的博客](http://3code.info/2017/01/18/SDiffuseMenu/)
 
 
 
