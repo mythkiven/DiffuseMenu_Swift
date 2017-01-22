@@ -3,9 +3,12 @@
 
 
 ![](https://api.travis-ci.org/mythkiven/DiffuseMenu_Swift.svg?branch=master)
-[![](https://img.shields.io/cocoapods/v/DiffuseMenu_Swift.svg)](https://github.com/mythkiven/DiffuseMenu_Swift)
+[![Version](https://img.shields.io/cocoapods/v/SDiffuseMenu.svg?style=flat)](http://cocoapods.org/pods/SDiffuseMenu)
+[![License](https://img.shields.io/cocoapods/l/SDiffuseMenu.svg?style=flat)](http://cocoapods.org/pods/SDiffuseMenu)
+[![Platform](https://img.shields.io/cocoapods/p/SDiffuseMenu.svg?style=flat)](http://cocoapods.org/pods/SDiffuseMenu)
 [![SinaWeibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%403%E8%A1%8C%E4%BB%A3%E7%A0%81-brightgreen.svg)](http://weibo.com/u/1822872443)
 [![Twitter](https://img.shields.io/badge/Twitter-%40Mr3code-brightgreen.svg)](https://twitter.com/Mr3code)
+
 
 
 >
@@ -31,12 +34,14 @@
 
 >1\使用 pod 方式嵌入项目: pod 'SDiffuseMenu','~> 1.2.1'
 >
->2\直接下载 zip 包体验 demo: 
->>包含内容为:
+>2\直接下载 zip 包内含:
+>>
 >>1)SDiffuseMenuDebugDemo.xcodeproj
+>>
 >>2)SDiffuseMenu 文件夹:内含源文件
+>>
 >>3)SDiffuseMenuDemo.xcworkspace,位于Source 文件夹内
->
+>>
 
 添加协议(动画状态回调) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)
 
