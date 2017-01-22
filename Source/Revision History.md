@@ -4,6 +4,12 @@
 
 **SDiffuseMenu 使用及解析[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift)**
 
+#### 2017-01-22  V1.2.0
+
+- 支持 cocoaPods 
+- 修改 storyboard :删除Stack View
+
+
 #### 2017-01-20  V1.1.0
 
 - 新增任意方位的直线形状动画:

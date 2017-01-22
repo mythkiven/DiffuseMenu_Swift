@@ -14,7 +14,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "DiffuseMenu(Swift)",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DiffuseMenu(Swift)\/DiffuseMenu(Swift).xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DiffuseMenuDemo(Swift)\/DiffuseMenu(Swift).xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mythkiven\/DiffuseMenu_Swift.git",

@@ -15,19 +15,30 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "SDiffuseMenu"
-  s.version      = "1.1.0"
-  s.summary      = "SDiffuseMenu is Swift version of AwesomeMenu,can eject a gorgeous animation menu"
+  s.name         = 'SDiffuseMenu'
+  s.version      = '1.2.0'
+  s.license      = 'MIT'
+  s.summary      = 'SDiffuseMenu is Swift version of AwesomeMenu,can eject a gorgeous animation menu'
+  s.homepage     = 'https://github.com/mythkiven/DiffuseMenu_Swift'
+  s.author       = { 'mythkiven' => '1282412855@qq.com' }
+  s.source       = { :git => 'https://github.com/mythkiven/DiffuseMenu_Swift.git', :tag => '#{s.version}' }
+  s.requires_arc = true
+  s.platform     = :ios, '8.0'
+  s.source_files = 'SDiffuseMenu/*.{swift}'
+  s.ios.deployment_target = '8.0'
 
+  #s.social_media_url = 'https://twitter.com/Mr3code'
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-                   DESC
 
-  s.homepage     = "https://github.com/mythkiven/DiffuseMenu_Swift"
+
+  # s.description  = <<-DESC
+  #                 DESC
+
+  
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,8 +49,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  #s.license      = "MIT"
+   
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -52,7 +63,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "mythkiven" => "1282412855@qq.com" }
+  
   # Or just: s.author    = "mythkiven"
   # s.authors            = { "mythkiven" => "1282412855@qq.com" }
   # s.social_media_url   = "http://twitter.com/mythkiven"
@@ -64,7 +75,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -79,8 +90,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/mythkiven/DiffuseMenu_Swift.git", :tag => "#{s.version}" }
-
+  
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -90,7 +100,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "SDiffuseMenu/*.{h,m}"
+  
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

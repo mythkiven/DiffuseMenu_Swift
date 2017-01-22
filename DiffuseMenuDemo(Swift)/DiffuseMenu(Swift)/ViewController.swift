@@ -59,7 +59,7 @@ class ViewController: UIViewController, SDiffuseMenuDelegate {
         // 选项数组
         var menus = [SDiffuseMenuItem]()
         
-        for _ in 0 ..< 1 {
+        for _ in 0 ..< 6 {
             let starMenuItem =  SDiffuseMenuItem(image: storyMenuItemImage,
                                                  highlightedImage: storyMenuItemImagePressed, contentImage: starImage,
                                                  highlightedContentImage: nil)

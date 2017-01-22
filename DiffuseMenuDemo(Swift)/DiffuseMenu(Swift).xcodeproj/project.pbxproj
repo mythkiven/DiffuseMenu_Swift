@@ -433,7 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W996G562LY;
 				INFOPLIST_FILE = "DiffuseMenu(Swift)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mythkiven.DiffuseMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,7 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W996G562LY;
 				INFOPLIST_FILE = "DiffuseMenu(Swift)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mythkiven.DiffuseMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,6 +532,7 @@
 				D236F97A1E2726B30007A52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D236F97B1E2726B30007A52C /* Build configuration list for PBXNativeTarget "DiffuseMenu(Swift)Tests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +541,7 @@
 				D236F97D1E2726B30007A52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D236F97E1E2726B30007A52C /* Build configuration list for PBXNativeTarget "DiffuseMenu(Swift)UITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +550,7 @@
 				D236F9801E2726B30007A52C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
