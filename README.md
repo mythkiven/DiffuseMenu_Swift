@@ -33,9 +33,9 @@
 >
 >2\直接下载 zip 包体验 demo: 
 >>包含内容为:
->>1)DiffuseMenu(Swift).xcworkspace 工程 demo,
->>2)SDiffuseMenu 文件夹:内含源文件,
->>3)Source 文件夹:内含非 pod 工程 demo,不支持 pod 的伙伴们可运行此 demo
+>>1)SDiffuseMenuDebugDemo.xcodeproj
+>>2)SDiffuseMenu 文件夹:内含源文件
+>>3)SDiffuseMenuDemo.xcworkspace,位于Source 文件夹内
 >
 
 添加协议(动画状态回调) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)
