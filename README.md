@@ -383,7 +383,7 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 
 // 增大点击范围,还可以在point方法中判断,不过就需要SDiffuseMenu.swift跟着调整了
 ```
-下图是ScaleRect方法小测试,看着是不是很好用啊😁😁
+下图是 Playground 中 ScaleRect方法小测试,看着是不是很好用啊😁😁
 
 ![](https://ooo.0o0.ooo/2017/01/18/587f06c314ded.png)
 
