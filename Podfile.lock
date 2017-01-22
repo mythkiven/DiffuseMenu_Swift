@@ -1,0 +1,12 @@
+PODS:
+  - SDiffuseMenu (1.2.0)
+
+DEPENDENCIES:
+  - SDiffuseMenu (~> 1.2.0)
+
+SPEC CHECKSUMS:
+  SDiffuseMenu: 3e1afc26344fb821e1a01e2712eb6fdc9b357dbf
+
+PODFILE CHECKSUM: 668df119f21511fdf768d20b1befa6a3c2099cfa
+
+COCOAPODS: 1.1.1

@@ -1,7 +1,7 @@
 //
 //
 //  V1.2.1
-//
+// 
 //  Created by mythkiven on 17/1/11.
 //  github地址:https://github.com/mythkiven
 //
@@ -9,7 +9,6 @@
 //  1、本动画是 Swift 版本的 AwesomeMenu,OC 版请参考 https://github.com/levey/AwesomeMenu
 //  2、代码解析见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
 //  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
-//  4、支持 cocoaPods
 
 import UIKit
 
@@ -36,9 +35,9 @@ open class SDiffuseMenuItem : UIImageView {
     }
     
     public init(image:UIImage,
-                highlightedImage hImg: UIImage,
-                contentImage cImg:UIImage,
-                highlightedContentImage hCImg:UIImage!) {
+         highlightedImage hImg: UIImage,
+         contentImage cImg:UIImage,
+         highlightedContentImage hCImg:UIImage!) {
         super.init(image: image)
         
         contentImageView                    = UIImageView(image:cImg)

@@ -9,7 +9,7 @@
 //  1、本动画是 Swift 版本的 AwesomeMenu,OC 版请参考 https://github.com/levey/AwesomeMenu
 //  2、代码解析见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/README.md
 //  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
-//  4、支持 cocoaPods
+
 
 import UIKit
 import QuartzCore
@@ -17,20 +17,15 @@ import QuartzCore
 
 @objc public protocol SDiffuseMenuDelegate : NSObjectProtocol {
     
-    /// 将要开始展开动画
-    @objc func SDiffuseMenuWillOpen(_ menu: SDiffuseMenu)
+    @objc func SDiffuseMenuWillOpen(_ menu: SDiffuseMenu) // 将要开始展开动画
     
-    /// 将要开始关闭动画
-    @objc func SDiffuseMenuWillClose(_ menu: SDiffuseMenu)
+    @objc func SDiffuseMenuWillClose(_ menu: SDiffuseMenu) // 将要开始关闭动画
     
-    /// 选中选项按钮
-    @objc func SDiffuseMenuDidSelectMenuItem(_ menu: SDiffuseMenu, didSelectIndex index: Int)
+    @objc func SDiffuseMenuDidSelectMenuItem(_ menu: SDiffuseMenu, didSelectIndex index: Int) // 选中选项按钮
     
-    /// 展开动画展开结束
-    @objc  func SDiffuseMenuDidOpen(_ menu: SDiffuseMenu)
+    @objc  func SDiffuseMenuDidOpen(_ menu: SDiffuseMenu) // 展开动画展开结束
     
-    /// 关闭动画关闭结束
-    @objc func SDiffuseMenuDidClose(_ menu: SDiffuseMenu)
+    @objc func SDiffuseMenuDidClose(_ menu: SDiffuseMenu) // 关闭动画关闭结束
     
 }
 
@@ -67,8 +62,8 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
     
     
     // MARK: - 属性
-    
-    
+   
+
     ///弧线动画,则动画中半径的变化:从0-->最大farRadius-->最小nearRadius-->结束endRadius
     ///直线动画,则半径长度就是线段的长度,线段长度从0 -->farRadius-->nearRadius-->endRadius
     open var nearRadius:             CGFloat!
@@ -247,37 +242,37 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
     }
     
     
-    //
-    //    func setStartPoint(_ aPoint: CGPoint) {
-    //        startPoint          = aPoint
-    //        _startButton.center = aPoint
-    //    }
-    //    func setImage(_ image: UIImage) {
-    //        _startButton.image = image
-    //    }
-    //    func image() -> UIImage {
-    //        return _startButton.image!
-    //    }
-    //    func setHighlightedImage(_ highlightedImage: UIImage) {
-    //        _startButton.highlightedImage = highlightedImage
-    //    }
-    //    func getHighlightedImage() -> UIImage {
-    //        return _startButton.highlightedImage!
-    //    }
-    //    func setContentImage(_ contentImage: UIImage) {
-    //        _startButton.contentImageView.image = contentImage
-    //    }
-    //    func getContentImage() -> UIImage {
-    //        return _startButton.contentImageView.image!
-    //    }
-    //    func setHighlightedContentImage(_ highlightedContentImage: UIImage) {
-    //        _startButton.contentImageView.highlightedImage = highlightedContentImage
-    //    }
-    //    func getHighlightedContentImage() -> UIImage {
-    //        return _startButton.contentImageView.highlightedImage!
-    //    }
+//
+//    func setStartPoint(_ aPoint: CGPoint) {
+//        startPoint          = aPoint
+//        _startButton.center = aPoint
+//    }
+//    func setImage(_ image: UIImage) {
+//        _startButton.image = image
+//    }
+//    func image() -> UIImage {
+//        return _startButton.image!
+//    }
+//    func setHighlightedImage(_ highlightedImage: UIImage) {
+//        _startButton.highlightedImage = highlightedImage
+//    }
+//    func getHighlightedImage() -> UIImage {
+//        return _startButton.highlightedImage!
+//    }
+//    func setContentImage(_ contentImage: UIImage) {
+//        _startButton.contentImageView.image = contentImage
+//    }
+//    func getContentImage() -> UIImage {
+//        return _startButton.contentImageView.image!
+//    }
+//    func setHighlightedContentImage(_ highlightedContentImage: UIImage) {
+//        _startButton.contentImageView.highlightedImage = highlightedContentImage
+//    }
+//    func getHighlightedContentImage() -> UIImage {
+//        return _startButton.contentImageView.highlightedImage!
+//    }
     
-    
+
     
     // MARK: - public
     
@@ -301,7 +296,7 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
     /// 某 index 对应的选项
     open func menuItemAtIndex(_ index: Int) -> SDiffuseMenuItem? {
         if index >= menusItems.count {
-            return nil
+             return nil
         }
         return menusItems.object(at: index) as? SDiffuseMenuItem
     }

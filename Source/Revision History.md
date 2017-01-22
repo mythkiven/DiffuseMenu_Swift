@@ -4,6 +4,14 @@
 
 **SDiffuseMenu 使用及解析[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift)**
 
+#### 2017-01-22  V1.2.1
+
+- 修复代码,以便支持 cocoaPods:
+  修改主要类和属性的访问控制权限
+
+- 新增 pod 工程demo: SDiffuseMenuDemo
+- 初始 demo 位置移动至 Source 目录下,建议使用此 demo 调试
+
 #### 2017-01-22  V1.2.0
 
 - 支持 cocoaPods 

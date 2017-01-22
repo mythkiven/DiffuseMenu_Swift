@@ -16,17 +16,18 @@ Pod::Spec.new do |s|
   #
 
   s.name         = 'SDiffuseMenu'
-  s.version      = '1.2.0'
+  s.version      = '1.2.1'
   s.license      = 'MIT'
   s.summary      = 'SDiffuseMenu is Swift version of AwesomeMenu,can eject a gorgeous animation menu'
   s.homepage     = 'https://github.com/mythkiven/DiffuseMenu_Swift'
   s.author       = { 'mythkiven' => '1282412855@qq.com' }
-  s.source       = { :git => 'https://github.com/mythkiven/DiffuseMenu_Swift.git', :tag => '#{s.version}' }
+  s.source       = { :git => 'https://github.com/mythkiven/DiffuseMenu_Swift.git', :tag => s.version }
   s.requires_arc = true
+  
   s.platform     = :ios, '8.0'
-  s.source_files = 'SDiffuseMenu/*.{swift}'
   s.ios.deployment_target = '8.0'
 
+  s.source_files = 'SDiffuseMenu/*.swift'
   #s.social_media_url = 'https://twitter.com/Mr3code'
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?

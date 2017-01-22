@@ -2,17 +2,11 @@
 ## Swift 版 AwesomeMenu 的改写之旅:SDiffuseMenu
 
 
-![](https://api.travis-ci.org/mythkiven/DiffuseMenu_Swift.svg?branch=master)
-[![](https://img.shields.io/badge/pod-v1.2.0-green.svg)](https://github.com/mythkiven/DiffuseMenu_Swift)
-[![SinaWeibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%403%E8%A1%8C%E4%BB%A3%E7%A0%81-brightgreen.svg)](http://weibo.com/u/1822872443)
-[![Twitter](https://img.shields.io/badge/Twitter-%40Mr3code-brightgreen.svg)](https://twitter.com/Mr3code)
-
-
-
 >本动画是 Swift 版的 AwesomeMenu,如需OC版还请移步[这里](https://github.com/levey/AwesomeMenu)。
 >
 >SDiffuseMenu 当前版本 V1.1.0
 >
+>我是刚转 Swift 不久,代码不足之处还请大神多多指教😁😁
 
 
 **动画效果如下:**
@@ -24,21 +18,11 @@
 
 ## 版本记录
 
-- V1.2.1 修复代码,以便支持 cocoaPods
 - V1.2.0 支持 cocoaPods
 - V1.1.0 新增任意方向的直线弹出动画\新增常用方向的枚举..
 - 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
 
 ## 一、使用方法：
-
->1\使用 pod 方式嵌入项目: pod 'SDiffuseMenu','~> 1.2.1'
->
->2\直接下载 zip 包体验 demo: 
->>包含内容为:
->>1)DiffuseMenu(Swift).xcworkspace 工程 demo,
->>2)SDiffuseMenu 文件夹:内含源文件,
->>3)Source 文件夹:内含非 pod 工程 demo,不支持 pod 的伙伴们可运行此 demo
->
 
 添加协议(动画状态回调) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)
 
@@ -403,7 +387,9 @@ class func ScaleRect( _ rect:CGRect, n:CGFloat) -> CGRect {
 ![](https://ooo.0o0.ooo/2017/01/18/587f06c314ded.png)
 
 >
->喜欢的朋友还请给个star哦,后续我会持续优化的😁😁
+>V1.1.0 版已在 AwesomeMenu 基础上增加新的动画形式,喜欢的朋友还请给个star哦,后续我会努力优化的~
+>
+>欢迎大神有空帮忙优化下代码😁😁
 >
 
 

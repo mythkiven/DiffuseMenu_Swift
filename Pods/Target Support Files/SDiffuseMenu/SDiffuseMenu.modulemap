@@ -1,0 +1,6 @@
+framework module SDiffuseMenu {
+  umbrella header "SDiffuseMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}
