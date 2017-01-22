@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0FE018E95C65008F0B42868A7ED62F51998C1950",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EFFC378D676A8C7D60853A9DC05B16B17EA9AA82" : 9223372036854775807,
+    "0FE018E95C65008F0B42868A7ED62F51998C1950" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6A494EAF-55B3-4C17-A315-A9F913561EAE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EFFC378D676A8C7D60853A9DC05B16B17EA9AA82" : "",
+    "0FE018E95C65008F0B42868A7ED62F51998C1950" : "DiffuseMenu_Swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SDiffuseMenuDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Source\/SDiffuseMenuDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mythkiven\/DiffuseMenu_Swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0FE018E95C65008F0B42868A7ED62F51998C1950"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mythkiven\/getFund.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EFFC378D676A8C7D60853A9DC05B16B17EA9AA82"
+    }
+  ]
+}

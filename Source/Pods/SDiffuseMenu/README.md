@@ -3,15 +3,17 @@
 
 
 ![](https://api.travis-ci.org/mythkiven/DiffuseMenu_Swift.svg?branch=master)
-[![](https://img.shields.io/cocoapods/v/DiffuseMenu_Swift.svg)](https://github.com/mythkiven/DiffuseMenu_Swift)
+[![](https://img.shields.io/badge/pod-v1.2.0-green.svg)](https://github.com/mythkiven/DiffuseMenu_Swift)
 [![SinaWeibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%403%E8%A1%8C%E4%BB%A3%E7%A0%81-brightgreen.svg)](http://weibo.com/u/1822872443)
 [![Twitter](https://img.shields.io/badge/Twitter-%40Mr3code-brightgreen.svg)](https://twitter.com/Mr3code)
 
 
->
+
 >本动画是 Swift 版的 AwesomeMenu,如需OC版还请移步[这里](https://github.com/levey/AwesomeMenu)。
->pod 'SDiffuseMenu', '~> 1.2.1'
 >
+>SDiffuseMenu 当前版本 V1.1.0
+>
+
 
 **动画效果如下:**
 
@@ -22,8 +24,8 @@
 
 ## 版本记录
 
-- V1.2.1 修复代码,以便更好的支持 cocoaPods
-- V1.2.0 支持 cocoaPods 嵌入代码因访问权限问题致部分功能无法使用,已在1.2.1版修复
+- V1.2.1 修复代码,以便支持 cocoaPods
+- V1.2.0 支持 cocoaPods
 - V1.1.0 新增任意方向的直线弹出动画\新增常用方向的枚举..
 - 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
 

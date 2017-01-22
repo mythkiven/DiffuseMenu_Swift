@@ -11,8 +11,6 @@
 //  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 //  4、支持 cocoaPods
 
-
-
 import UIKit
 import QuartzCore
 
