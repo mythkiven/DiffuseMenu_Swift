@@ -25,8 +25,8 @@
 
 ## 版本记录
 
-- V1.2.1 修复代码,以便更好的支持 cocoaPods
-- V1.2.0 支持 cocoaPods 嵌入代码因访问权限问题致部分功能无法使用,已在1.2.1版修复
+- V1.2.1 修复代码,以便更好的支持 CocoaPods
+- V1.2.0 支持 CocoaPods 嵌入代码因访问权限问题致部分功能无法使用,已在1.2.1版修复
 - V1.1.0 新增任意方向的直线弹出动画\新增常用方向的枚举..
 - 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
 
@@ -36,11 +36,11 @@
 >
 >2\直接下载 zip 包内含:
 >>
->>1)SDiffuseMenuDebugDemo.xcodeproj
+>>1)SDiffuseMenuDebugDemo.xcodeproj: 调试 demo
 >>
 >>2)SDiffuseMenu 文件夹:内含源文件
 >>
->>3)SDiffuseMenuDemo.xcworkspace,位于Source 文件夹内
+>>3)SDiffuseMenuDemo.xcworkspace:CocoaPods 调试 demo ,位于Source 文件夹内
 >>
 
 添加协议(动画状态回调) -> 设置选项数组 -> 设置菜单按钮 -> 动画属性配置 -> .addSubview(menu)

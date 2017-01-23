@@ -9,8 +9,7 @@
 - 修复代码,以便支持 cocoaPods:
   修改主要类和属性的访问控制权限
 
-- 新增 pod 工程demo: SDiffuseMenuDemo
-- 初始 demo 位置移动至 Source 目录下,建议使用此 demo 调试
+- 新增 pod 工程demo: SDiffuseMenuDemo(Source 目录下)
 
 #### 2017-01-22  V1.2.0
 

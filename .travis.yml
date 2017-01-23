@@ -1,9 +1,9 @@
-language: swift
+language: objective-c
 osx_image: xcode8
 xcode_project: SDiffuseMenuDebugDemo.xcodeproj
 xcode_scheme: SDiffuseMenuDebugDemo
 xcode_sdk: iphonesimulator10.0
-# language: swift
+# language: objective-c
 # osx_image: xcode8
 # env:
 #   global:
