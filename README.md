@@ -1,4 +1,8 @@
 
+>  已迁移到 [MKAppKit](https://github.com/mythkiven/MKAppKit)
+
+>  添加方式  `pod 'MKAppKit/MKDiffuseMenu'`  或  `pod 'SDiffuseMenu','~> 1.2.1'`
+
 ## 菜单弹射动画: SDiffuseMenu(Swift 版 AwesomeMenu)的用法及解析
 
 

@@ -32,8 +32,8 @@ open class SDiffuseMenuItem : UIImageView {
     
     let kDiffuseMenuItemDefaultTouchRange = CGFloat(2.0)
     
-    required public init?(coder aDecoder: (NSCoder!)) {
-        super.init(coder: aDecoder)
+    required public init?(coder aDecoder: (NSCoder?)) {
+        super.init(coder: aDecoder!)
     }
     
     public init(image:UIImage,

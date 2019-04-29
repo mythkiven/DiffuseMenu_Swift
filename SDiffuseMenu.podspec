@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = 'SDiffuseMenu'
-  s.version      = '1.2.1'
+  s.version      = '1.2.2'
   s.license      = 'MIT'
   s.summary      = 'SDiffuseMenu is Swift version of AwesomeMenu,can eject a gorgeous animation menu'
   s.homepage     = 'https://github.com/mythkiven/DiffuseMenu_Swift'

@@ -110,7 +110,7 @@
 				TargetAttributes = {
 					D26BF5E81E34B117009E72A9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 79BDF8TB26;
+						DevelopmentTeam = NV5T27F7HC;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -120,6 +120,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -277,13 +278,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 79BDF8TB26;
+				DEVELOPMENT_TEAM = NV5T27F7HC;
 				INFOPLIST_FILE = SDiffuseMenuDebugDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mythkiven.SDiffuseMenuDebugDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -291,13 +292,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 79BDF8TB26;
+				DEVELOPMENT_TEAM = NV5T27F7HC;
 				INFOPLIST_FILE = SDiffuseMenuDebugDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.mythkiven.SDiffuseMenuDebugDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
