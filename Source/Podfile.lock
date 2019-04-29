@@ -1,12 +1,16 @@
 PODS:
-  - SDiffuseMenu (1.2.1)
+  - SDiffuseMenu (1.2.2)
 
 DEPENDENCIES:
-  - SDiffuseMenu (~> 1.2.1)
+  - SDiffuseMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SDiffuseMenu
 
 SPEC CHECKSUMS:
-  SDiffuseMenu: 59c34f013abac8f020a26dbfdf9daecf39f383b1
+  SDiffuseMenu: 7ddd2b2bbd6018e6a32cdc715c051f999deaa435
 
-PODFILE CHECKSUM: 43ccf0032bfedbd11991f8c0a4bb7079e68eb9f5
+PODFILE CHECKSUM: 9fb68b70bdb09cd6c945db730fce1da51f160a75
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.6.1

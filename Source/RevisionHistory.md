@@ -4,6 +4,14 @@
 
 **SDiffuseMenu 使用及解析[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift)**
 
+
+#### 2019-04-29  V1.2.2
+
+- 支持swift5.0 
+
+- 迁移至MKAppKit，可使用  pod 'MKAppKit/MKDiffuseMenu' 添加
+
+
 #### 2017-01-22  V1.2.1
 
 - 修复代码,以便支持 CocoaPods:

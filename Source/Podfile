@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'SDiffuseMenuDemo' do
     
-pod 'SDiffuseMenu','~> 1.2.1'
+pod 'SDiffuseMenu' 
 
 end
 

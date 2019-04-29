@@ -11,6 +11,8 @@
 //  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 //  4、支持 cocoaPods
 
+
+
 import UIKit
 import QuartzCore
 
@@ -408,7 +410,7 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
                            selector: selector,
                            userInfo: nil,
                            repeats: true)
-            RunLoop.current.add(_timer, forMode: RunLoopMode.commonModes)
+            RunLoop.current.add(_timer, forMode: RunLoop.Mode.common)
             _isAnimating = true
         }
     }
@@ -461,8 +463,8 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
         let animationgroup          =  CAAnimationGroup()
         animationgroup.animations   = [positionAnimation, rotateAnimation ]
         animationgroup.duration     = animationDuration
-        animationgroup.fillMode     = kCAFillModeForwards
-        animationgroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        animationgroup.fillMode     = CAMediaTimingFillMode.forwards
+        animationgroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         animationgroup.delegate     = self
         
         if(_flag == menusItems.count - 1) {
@@ -517,8 +519,8 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
         let animationgroup          =  CAAnimationGroup()
         animationgroup.animations   = [positionAnimation, rotateAnimation]
         animationgroup.duration     = animationDuration
-        animationgroup.fillMode     = kCAFillModeForwards
-        animationgroup.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
+        animationgroup.fillMode     = CAMediaTimingFillMode.forwards
+        animationgroup.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeIn)
         animationgroup.delegate     = self
         
         if(_flag == 0){
@@ -546,7 +548,7 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
         let animationgroup =  CAAnimationGroup()
         animationgroup.animations = [positionAnimation, scaleAnimation, opacityAnimation]
         animationgroup.duration = animationDuration
-        animationgroup.fillMode = kCAFillModeForwards
+        animationgroup.fillMode = CAMediaTimingFillMode.forwards
         
         return animationgroup
     }
@@ -566,7 +568,7 @@ open class SDiffuseMenu : UIView, SDiffuseMenuItemDelegate, CAAnimationDelegate 
         let animationgroup          =  CAAnimationGroup()
         animationgroup.animations   = [positionAnimation, scaleAnimation, opacityAnimation]
         animationgroup.duration     = animationDuration
-        animationgroup.fillMode     = kCAFillModeForwards
+        animationgroup.fillMode     = CAMediaTimingFillMode.forwards
         
         return animationgroup
     }

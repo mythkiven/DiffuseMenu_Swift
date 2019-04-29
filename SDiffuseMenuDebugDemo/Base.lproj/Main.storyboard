@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DiffuseMenu_Swift_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SDiffuseMenuDebugDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -104,7 +104,7 @@
                                         </connections>
                                     </slider>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.05" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aC0-fW-8Ij">
-                                        <rect key="frame" x="320" y="140.5" width="60" height="18"/>
+                                        <rect key="frame" x="320" y="140" width="60" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="2Cb-DN-6TI"/>
                                         </constraints>
@@ -125,7 +125,7 @@
                                         </connections>
                                     </slider>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMA-MI-Y7Z">
-                                        <rect key="frame" x="320" y="169.5" width="50" height="18"/>
+                                        <rect key="frame" x="320" y="170" width="50" height="18"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -146,7 +146,7 @@
                                         </connections>
                                     </slider>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXF-6E-nWY">
-                                        <rect key="frame" x="320" y="199.5" width="50" height="18"/>
+                                        <rect key="frame" x="320" y="200" width="50" height="18"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -338,11 +338,11 @@
                             <constraint firstAttribute="trailing" secondItem="64C-cj-tdx" secondAttribute="trailing" id="GkL-TM-Wtx"/>
                             <constraint firstItem="eGH-Yv-q3L" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="QKi-li-YN2"/>
                             <constraint firstItem="64C-cj-tdx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="W9E-TG-kMY"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="64C-cj-tdx" secondAttribute="bottom" id="bxc-ix-Cv1"/>
                             <constraint firstItem="6Qm-m2-wjd" firstAttribute="top" secondItem="eGH-Yv-q3L" secondAttribute="bottom" constant="10" id="hEE-Oe-TgG"/>
                             <constraint firstItem="eGH-Yv-q3L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qYH-Pd-XuG"/>
                             <constraint firstItem="64C-cj-tdx" firstAttribute="top" secondItem="eGH-Yv-q3L" secondAttribute="bottom" id="vbI-h5-uSu"/>
                             <constraint firstAttribute="trailing" secondItem="6Qm-m2-wjd" secondAttribute="trailing" constant="100" id="wmt-bQ-PWX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="64C-cj-tdx" secondAttribute="bottom" id="yc2-fN-KTY"/>
                         </constraints>
                     </view>
                     <connections>

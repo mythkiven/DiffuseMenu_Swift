@@ -1,7 +1,7 @@
 
->  已迁移到 [MKAppKit](https://github.com/mythkiven/MKAppKit)
+>  已迁移到 [MKAppKit](https://github.com/mythkiven/MKAppKit)， 添加方式  `pod 'MKAppKit/MKDiffuseMenu'` 
 
->  添加方式  `pod 'MKAppKit/MKDiffuseMenu'`  或  `pod 'SDiffuseMenu','~> 1.2.1'`
+>  本仓库已经更新并支持swift5.0， `pod 'SDiffuseMenu','~> 1.2.2'`
 
 ## 菜单弹射动画: SDiffuseMenu(Swift 版 AwesomeMenu)的用法及解析
 
@@ -34,7 +34,7 @@
 - V1.2.1 修复代码,以便更好的支持 CocoaPods
 - V1.2.0 支持 CocoaPods 
 - V1.1.0 新增任意方向的直线弹出动画,新增常用方向的枚举
-- 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/Revision History.md)
+- 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/RevisionHistory.md)
 
 ## 一、使用方法：
 

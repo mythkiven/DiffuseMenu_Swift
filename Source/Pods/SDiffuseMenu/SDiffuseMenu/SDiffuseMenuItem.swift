@@ -11,6 +11,7 @@
 //  3、修订记录见 https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Revision History.md
 //  4、支持 cocoaPods
 
+
 import UIKit
 
 @objc public protocol SDiffuseMenuItemDelegate : NSObjectProtocol {
@@ -31,8 +32,8 @@ open class SDiffuseMenuItem : UIImageView {
     
     let kDiffuseMenuItemDefaultTouchRange = CGFloat(2.0)
     
-    required public init?(coder aDecoder: (NSCoder!)) {
-        super.init(coder: aDecoder)
+    required public init?(coder aDecoder: (NSCoder?)) {
+        super.init(coder: aDecoder!)
     }
     
     public init(image:UIImage,
