@@ -1,3 +1,18 @@
+# SDiffuseMenu | Swift Radial Menu Animation for iOS
+
+Swift port of [AwesomeMenu](https://github.com/levey/AwesomeMenu) — tap-to-expand radial menu animation for UIKit. Also available via [MKAppKit/MKDiffuseMenu](https://github.com/mythkiven/MKAppKit).
+
+Keywords: ios menu animation, awesome menu swift, radial menu uikit, sdiffusemenu, cocoa pods ui component
+
+## Quick Start
+
+```ruby
+pod 'SDiffuseMenu', '~> 1.2.2'
+# or
+pod 'MKAppKit/MKDiffuseMenu'
+```
+
+---
 
 >  已迁移到 [MKAppKit](https://github.com/mythkiven/MKAppKit)， 添加方式  `pod 'MKAppKit/MKDiffuseMenu'` 
 
