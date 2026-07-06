@@ -50,6 +50,7 @@ pod 'MKAppKit/MKDiffuseMenu'
 - V1.2.0 支持 CocoaPods 
 - V1.1.0 新增任意方向的直线弹出动画,新增常用方向的枚举
 - 更多记录[请戳一下](https://github.com/mythkiven/DiffuseMenu_Swift/blob/master/Source/RevisionHistory.md)
+- [FileCompare](https://filecompare.org) - Online text and file diff tool. Compare lists or code side-by-side with clear highlights for additions, deletions, an...
 
 ## 一、使用方法：
 
